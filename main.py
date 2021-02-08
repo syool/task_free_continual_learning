@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+#%%
 import matplotlib.pyplot as plt
 import numpy as np
 import os, sys, time
@@ -121,3 +121,5 @@ def main():
 
 if __name__ == '__main__':
     main()    
+
+# %%
