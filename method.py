@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 import os, sys, time
 import numpy.random as rn
@@ -213,7 +213,7 @@ class Task_free_continual_learning():
                     # empty recent buffer after training couple of times
                     recent_buffer = []
             
-        if False and use_hard_buffer:
+        if True and use_hard_buffer:
             xs_pos=[_['state'][0] for _ in hard_buffer if _['trgt']==1]
             ys_pos=[_['state'][1] for _ in hard_buffer if _['trgt']==1]
             xs_neg=[_['state'][0] for _ in hard_buffer if _['trgt']==0]
@@ -223,11 +223,11 @@ class Task_free_continual_learning():
             plt.title('replay buffer')
             plt.show()
             
-        if False:
+        if True:
             for q in range(self.ntasks):
-                y_pred=model(torch.from_numpy(test_inputs[q].reshape(-1,self.dim)).type(torch.float32)).detach().numpy()
-                positive_points=[test_inputs[q][i] for i in range(len(test_inputs[q])) if np.argmax(y_pred[i])==1]
-                negative_points=[test_inputs[q][i] for i in range(len(test_inputs[q])) if np.argmax(y_pred[i])==0]
+                y_pred=self.model(torch.from_numpy(data.test_inputs[q].reshape(-1,self.dim)).type(torch.float32)).detach().numpy()
+                positive_points=[data.test_inputs[q][i] for i in range(len(data.test_inputs[q])) if np.argmax(y_pred[i])==1]
+                negative_points=[data.test_inputs[q][i] for i in range(len(data.test_inputs[q])) if np.argmax(y_pred[i])==0]
                 plt.scatter([p[0] for p in positive_points],[p[1] for p in positive_points],color='blue')
                 plt.scatter([p[0] for p in negative_points],[p[1] for p in negative_points],color='red')
             plt.axis('off')

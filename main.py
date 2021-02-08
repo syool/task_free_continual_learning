@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 import os, sys, time
 import matplotlib.patches as mpatches
@@ -33,7 +33,7 @@ def experiment(data, learning_object, tags=['Online Continual','Online Continual
                                         continual_learning=settings[tag][1])
         training_losses[tag], loss_window_means[tag], update_tags[tag], loss_window_variances[tag], test_losses[tag] = results
     # Plot loss window mean, variance and update for each tag
-    if False and 'Online Continual' in tags or 'Online Continual No Hardbuffer' in tags:
+    if True and 'Online Continual' in tags or 'Online Continual No Hardbuffer' in tags:
         for dataname in ['loss_window_means','update_tags','loss_window_variances']:
             legend=[]
             plt.title(dataname)
@@ -47,7 +47,7 @@ def experiment(data, learning_object, tags=['Online Continual','Online Continual
     #print loss_window_means
     
     # Plot training loss
-    if False:
+    if True:
         legend=[]
         plt.title('training accuracy')
         #for i in range(ntasks): plt.axvline(x=(i+1)*ntrain,color='gray')
@@ -59,7 +59,7 @@ def experiment(data, learning_object, tags=['Online Continual','Online Continual
         plt.show()
         
     # Plot test loss
-    if False:
+    if True:
         subsample=1
         for task in range(2):
             legend=[]
@@ -87,7 +87,7 @@ def main():
     ntasks=2
     dim=4
     data = Sampler(alpha=1.0,
-                    verbose=False,
+                    verbose=True,
                     ntasks=ntasks,
                     dim=dim,
                     discriminator_offset=0.05, 
@@ -97,23 +97,8 @@ def main():
                     ntrain=10000,
                     ntest=200)
 
-    # learning_object=Task_free_continual_learning(verbose=False,
-    #                                                     seed=123,
-    #                                                     dev='cpu',
-    #                                                     dim=dim,
-    #                                                     hidden_units=100,
-    #                                                     learning_rate=0.005,
-    #                                                     ntasks=ntasks,
-    #                                                     gradient_steps=5,
-    #                                                     loss_window_length=5,
-    #                                                     loss_window_mean_threshold=0.2,
-    #                                                     loss_window_variance_threshold=0.1,                                                         
-    #                                                     MAS_weight=0.5,
-    #                                                     recent_buffer_size=20,
-    #                                                     hard_buffer_size=5)
 
-
-    learning_object=Task_free_continual_learning(verbose=False,
+    learning_object=Task_free_continual_learning(verbose=True,
                                                         seed=123,
                                                         dev='cpu',
                                                         dim=dim,
