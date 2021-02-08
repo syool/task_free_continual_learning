@@ -1,4 +1,3 @@
-import matplotlib
 import matplotlib.pyplot as plt
 
 year = [1500, 1600, 1700, 1800, 1900, 2000]
